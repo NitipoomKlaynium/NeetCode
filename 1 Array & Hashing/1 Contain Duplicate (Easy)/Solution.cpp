@@ -22,7 +22,7 @@ public:
 };
 
 int main() {
-    std::vector<int> vec = {1,2,3,1};
+    std::vector<int> vec = {1, 2, 3, 1};
     cout << Solution::containsDuplicate(vec);
     return 0;
 }

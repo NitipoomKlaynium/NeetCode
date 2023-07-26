@@ -46,8 +46,23 @@ def search(self, nums: list[int], target: int) -> int:
         return search(nums[:center], target)
     else :
         return search(nums[center + 1:], target)
-        
+
+def find_duplicates(data):
+    duplicates = []
+    data_set = set()
+    for num in data:
+        if num in data_set:
+            duplicates.append(num)
+        else:
+            data_set.add(num)
+    return duplicates
+
+
     
                     
 if __name__ == "__main__" :
-    print(isValid("]"))
+    # print(isValid("]"))
+    
+    data = [1, 2, 3, 4, 5, 1, 2, 6, 7]
+    duplicates = find_duplicates(data)
+    print(duplicates)

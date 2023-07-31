@@ -4,24 +4,22 @@
 
 using namespace std;
 
-class Solution {
-public:
-    static bool isAnagram(string s, string t) {
+bool isAnagram(string s, string t) {
 
-        if (s.size() != t.size()) return false;
+    if (s.size() != t.size()) return false;
 
-        sort(s.begin(), s.end());
-        sort(t.begin(), t.end());
+    sort(s.begin(), s.end());
+    sort(t.begin(), t.end());
 
-        for (int i = 0 ; i < s.size() ; i++) {
-            if (s[i] != t[i]) return false;
-        }
-
-        return true;
+    for (int i = 0 ; i < s.size() ; i++) {
+        if (s[i] != t[i]) return false;
     }
-};
+
+    return true;
+}
+
 
 int main() {
-    cout << Solution::isAnagram("abc", "bac");
+    cout << isAnagram("abc", "bac");
     return 0;
 }

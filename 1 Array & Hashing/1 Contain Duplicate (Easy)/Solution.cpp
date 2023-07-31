@@ -4,26 +4,23 @@
 
 using namespace std;
 
-class Solution {
-public:
-    static bool containsDuplicate(vector<int>& nums) {
+bool containsDuplicate(vector<int>& nums) {
 
-        sort(nums.begin(), nums.end());
-        
-        std::size_t i = 0;
-        while(i < nums.size() - 1) {
-            if (nums[i] == nums[++i]) {
-                return true;
-            }
+    sort(nums.begin(), nums.end());
+    
+    std::size_t i = 0;
+    while(i < nums.size() - 1) {
+        if (nums[i] == nums[++i]) {
+            return true;
         }
-
-        return false;
     }
-};
+
+    return false;
+}
 
 int main() {
     std::vector<int> vec = {1, 2, 3, 1};
-    cout << Solution::containsDuplicate(vec);
+    cout << containsDuplicate(vec);
     return 0;
 }
 

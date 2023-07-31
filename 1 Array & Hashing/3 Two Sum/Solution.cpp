@@ -23,5 +23,9 @@ public:
 int main() {
     vector<int> vec{2, 3, 4};
     vector<int> result = Solution::twoSum(vec, 9);
+
+    for(int item: result) {
+        cout << item << " ";
+    }
     return 0;
 }

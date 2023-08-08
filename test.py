@@ -58,11 +58,93 @@ def find_duplicates(data):
     return duplicates
 
 
+class MyArray:
+    def __init__(self, data):
+        self.data = data
+
+    def __getitem__(self, indices):
+        print(type(indices))
+        print(indices)
+        if isinstance(indices, tuple) and len(indices) == 2:
+            row_indices, col_indices = indices
+            if isinstance(row_indices, slice) and isinstance(col_indices, slice):
+                # Extract start, stop, and step from slice objects
+                row_start, row_stop, row_step = row_indices.indices(len(self.data))
+                col_start, col_stop, col_step = col_indices.indices(len(self.data[0]))
+                # Use built-in list slicing to get a 2D sub-array
+                return [row[col_start:col_stop:col_step] for row in self.data[row_start:row_stop:row_step]]
+
+        else:
+            raise IndexError('Invalid index')
+
+def waterContainer(walls: list) -> list:
+    indices = list(range(0, len(walls)))
     
-                    
-if __name__ == "__main__" :
-    # print(isValid("]"))
+    walls_order = sorted(indices, key=lambda x: walls[x], reverse=True)
+    waters = [-1] * (len(walls) - 1)
+    remaining = len(walls)
     
-    data = [1, 2, 3, 4, 5, 1, 2, 6, 7]
-    duplicates = find_duplicates(data)
-    print(duplicates)
+    for i in range(1, len(walls_order)):
+        a = walls_order[i - 1]
+        b = walls_order[i]
+        start = min(a, b)
+        stop = max(a, b)
+        for j in range(start, stop):
+            if waters[j] == -1:
+                waters[j] = walls[b]
+                remaining -= 1
+                
+    for i in range(len(waters)):
+        if waters[i] == -1:
+            waters[i] = 0
+    
+    return waters
+
+def mergeSort(arr):
+    if len(arr) > 1:
+ 
+         # Finding the mid of the array
+        mid = len(arr)//2
+ 
+        # Dividing the array elements
+        L = arr[:mid]
+ 
+        # Into 2 halves
+        R = arr[mid:]
+ 
+        # Sorting the first half
+        mergeSort(L)
+ 
+        # Sorting the second half
+        mergeSort(R)
+ 
+        i = j = k = 0
+ 
+        # Copy data to temp arrays L[] and R[]
+        while i < len(L) and j < len(R):
+            if L[i] <= R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+ 
+        # Checking if any element was left
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+ 
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
+if __name__ == '__main__':
+    arr = [12, 11, 13, 5, 6, 7]
+    print("Given array is")
+    print(arr)
+    mergeSort(arr)
+    print("\nSorted array is ")
+    print(arr)

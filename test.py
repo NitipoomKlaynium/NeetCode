@@ -141,10 +141,20 @@ def mergeSort(arr):
             j += 1
             k += 1
 
+
+def _decorator(f):
+    
+    def w(*arg, **kwargs):
+        print("Start decorator")
+        result = f(*arg, **kwargs)
+        print("End decorator")
+        return result
+    
+    return w
+
+@_decorator
+def greet():
+    print("Hello")
+
 if __name__ == '__main__':
-    arr = [12, 11, 13, 5, 6, 7]
-    print("Given array is")
-    print(arr)
-    mergeSort(arr)
-    print("\nSorted array is ")
-    print(arr)
+    greet()

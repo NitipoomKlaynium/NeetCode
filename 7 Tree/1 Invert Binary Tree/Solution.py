@@ -1,2 +1,0 @@
-def invertTree(root):
-    pass
